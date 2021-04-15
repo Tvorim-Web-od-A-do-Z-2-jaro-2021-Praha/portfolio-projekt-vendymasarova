@@ -13,11 +13,11 @@
   margin: auto;
 }
 
-.nav__logo--levá {
+.nav__logo {
   color: blue;
 }
 
-.nav__links--pravá {
+.nav__links {
   display: flex;
   list-style: none;
   width: 30%;
@@ -34,7 +34,7 @@
   color: blue;
 }
 
-.hlavicka__nadpis--gray {
+.hlavicka__podnadpis--gray {
   color: gray;
   font-size: 26px;
   padding-top: 1rem;
