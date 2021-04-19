@@ -1,0 +1,77 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  padding-top: 1rem;
+  width: 90%;
+  margin: auto;
+}
+
+.nav__logo {
+  color: blue;
+}
+
+.nav__links {
+  display: flex;
+  list-style: none;
+  width: 30%;
+  justify-content: space-around;
+}
+
+.hlavicka {
+  padding-top: 5rem;
+  width: 90%;
+  margin: auto;
+  height: 50vh;
+}
+.hlavicka__nadpis--modra {
+  color: blue;
+}
+
+.hlavicka__podnadpis--gray {
+  color: gray;
+  font-size: 26px;
+  padding-top: 1rem;
+}
+.hlavicka_text--title {
+  padding-top: 1rem;
+}
+.hlavni {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+.hlavni__text--img {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+}
+
+.hlavni__text--about {
+  padding: 10rem;
+}
+.paticka {
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paticka--cerna {
+  background-color: black;
+  color: white;
+}
+
+.kontakt {
+  width: 90%;
+  margin: auto;
+  padding-bottom: 2rem;
+}
