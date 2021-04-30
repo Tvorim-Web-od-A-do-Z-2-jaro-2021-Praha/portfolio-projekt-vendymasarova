@@ -1,0 +1,102 @@
+$mainColor: #a6808c;
+$secondaryColor: #ccb7ae;
+$thirdColor: #706677;
+$paddingTop: 1rem;
+
+@mixin mainGrid {
+  display: grid;
+  grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
+  grid-template-rows: 8vh 1fr 1fr 1fr 8vh;
+}
+
+@mixin rozvrzeniGrid {
+  grid-column: 2 / span 3;
+}
+
+body {
+  @include mainGrid();
+}
+.nav {
+  grid-column: 2 / span 3;
+  grid-row: 1;
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  padding-top: 1rem;
+  align-self: start;
+}
+
+.nav__logo {
+  color: $mainColor;
+  font-weight: 900;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  align-self: center;
+}
+
+.nav__links {
+  display: flex;
+  list-style: none;
+  width: 30%;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.links {
+  font-size: 18px;
+  transition: 0.5s;
+  &__link:hover {
+    color: $secondaryColor;
+  }
+}
+
+@media (max-width: 670px) {
+  .nav__links {
+    flex-direction: column;
+  }
+}
+
+.hlavicka {
+  @include rozvrzeniGrid();
+  grid-row: 2;
+  display: grid;
+  place-items: start, center;
+}
+
+.hlavni {
+  grid-row: 3;
+  @include rozvrzeniGrid();
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  justify-items: center;
+}
+.hlavni__text--img {
+  display: grid;
+  width: 100%;
+  max-width: 400px;
+}
+
+.hlavni__text--about {
+  padding-bottom: 2em;
+}
+
+.paticka {
+  height: 8vh;
+  grid-column: 1/-1;
+  grid-row: -2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paticka--cerna {
+  background-color: black;
+  color: white;
+}
+
+.kontakt {
+  padding-bottom: 2rem;
+  grid-column: 2;
+  grid-row: 4;
+  place-self: end center;
+}
