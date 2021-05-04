@@ -1,12 +1,26 @@
 $mainColor: #a6808c;
 $secondaryColor: #ccb7ae;
 $thirdColor: #706677;
+$blackColor: #000000;
 $paddingTop: 1rem;
+$fontSmall: 18px;
+$fontNadpisy: 26px;
+$fontMedium: 36px;
+$marginTop: 2rem;
+$padding-bottom: 2rem;
+
+@mixin mainSetting {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
 
 @mixin mainGrid {
   display: grid;
   grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
-  grid-template-rows: 8vh 1fr 1fr 1fr 8vh;
+  grid-template-rows: 15vh 1fr 1fr 1fr 8vh;
 }
 
 @mixin rozvrzeniGrid {
@@ -15,14 +29,17 @@ $paddingTop: 1rem;
 
 body {
   @include mainGrid();
+  @include mainSetting();
 }
 .nav {
   grid-column: 2 / span 3;
   grid-row: 1;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 8vh;
-  padding-top: 1rem;
+
   align-self: start;
 }
 
@@ -32,6 +49,8 @@ body {
   grid-column-start: 2;
   grid-column-end: 3;
   align-self: center;
+  font-size: $fontMedium;
+  padding-top: $paddingTop;
 }
 
 .nav__links {
@@ -40,27 +59,84 @@ body {
   width: 30%;
   justify-content: space-around;
   align-self: center;
+  padding-top: $paddingTop;
 }
 
 .links {
-  font-size: 18px;
+  font-size: $fontSmall;
   transition: 0.5s;
   &__link:hover {
     color: $secondaryColor;
   }
 }
 
+.burger {
+  cursor: pointer;
+  display: none;
+}
+
+.burger div {
+  width: 1.7rem;
+  height: 0.2rem;
+  background-color: black;
+  margin: 0.4rem;
+  transition: all 0.3s ease;
+}
 @media (max-width: 670px) {
   .nav__links {
     flex-direction: column;
+    width: 50%;
+    position: absolute;
+    right: -2.3rem;
+    height: 92vh;
+    top: 8vh;
+    background-color: $mainColor;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(100%);
+    transition: transform 1s ease-in;
+    z-index: 10;
   }
+
+  .links__link {
+    padding-top: $paddingTop;
+    &:hover {
+      transform: translateY(-0.3rem);
+    }
+  }
+
+  .burger {
+    display: block;
+    color: black;
+    padding-top: $paddingTop;
+
+    z-index: 5;
+  }
+}
+
+.nav__active {
+  transform: translateX(0%);
 }
 
 .hlavicka {
   @include rozvrzeniGrid();
   grid-row: 2;
   display: grid;
-  place-items: start, center;
+  place-items: start, start;
+}
+
+.hlavicka h1 {
+  font-size: $fontNadpisy;
+  align-self: center;
+  margin-top: $paddingTop;
+}
+
+.hlavicka__podnadpis {
+  font-size: $fontSmall;
+  align-self: start;
 }
 
 .hlavni {
@@ -78,7 +154,7 @@ body {
 }
 
 .hlavni__text--about {
-  padding-bottom: 2em;
+  padding-bottom: $padding-bottom;
 }
 
 .paticka {
