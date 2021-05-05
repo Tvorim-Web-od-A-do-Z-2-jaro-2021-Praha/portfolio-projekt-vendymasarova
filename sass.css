@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
+
+  grid-template-rows: 8vh 1fr 1fr 1fr 8vh;
+}
+
+.nav {
+  grid-column: 2 / span 3;
+  grid-row: 1;
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  padding-top: 1rem;
+  align-self: start;
+}
+
+.nav__logo {
+  color: blue;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.nav__links {
+  display: flex;
+  list-style: none;
+  width: 30%;
+  justify-content: space-around;
+}
+
+@media (max-width: 670px) {
+  .nav__links {
+    flex-direction: column;
+  }
+}
+
+.hlavicka {
+  grid-column: 2 / span 3;
+  grid-row: 2;
+  display: grid;
+  place-items: start, center;
+}
+.hlavicka__nadpis--modra {
+  color: blue;
+}
+
+.hlavicka__podnadpis--gray {
+  color: gray;
+  font-size: 26px;
+  padding-top: 1rem;
+}
+.hlavicka_text--title {
+  padding-top: 1rem;
+}
+.hlavni {
+  grid-row: 3;
+  grid-column-start: 2;
+  grid-column-end: span 3;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  align-items: center;
+  justify-items: center;
+}
+
+.hlavni__text--img {
+  display: grid;
+  width: 100%;
+  max-width: 400px;
+}
+
+.hlavni__text--about {
+  padding-bottom: 2em;
+}
+
+.paticka {
+  height: 8vh;
+  grid-column: 1/-1;
+  grid-row: -2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paticka--cerna {
+  background-color: black;
+  color: white;
+}
+
+.kontakt {
+  padding-bottom: 2rem;
+  grid-column: 2;
+  grid-row: 4;
+  place-self: end center;
+}
