@@ -16,9 +16,9 @@
     <nav class="nav">
       <div class="nav__logo">Vendy Masarová</div>
       <ul class="nav__links links">
-        <li class="links__link">O mně</li>
-        <li class="links__link">Má práce</li>
-        <li class="links__link">Kontakt</li>
+        <a class="links__link" href=""><li>O mně</li></a>
+        <a class="links__link" href=""><li>Má práce</li></a>
+        <a class="links__link" href=""><li>Kontakt</li></a>
       </ul>
       <div class="burger">
         <div class="line-1"></div>
@@ -27,25 +27,31 @@
       </div>
     </nav>
     <header class="hlavicka">
-      <h1 class="hlavicka__nadpis hlavicka__nadpis--modra">Jmenuji se Vendy</h1>
-      <h5 class="hlavicka__podnadpis hlavicka__podnadpis--gray">O mně</h5>
-      <p class="hlavicka_text hlavicka_text--title">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-        voluptatibus similique dolorem.
-      </p>
+      <div class="hlavicka__about">
+        <h1 class="hlavicka__nadpis hlavicka__nadpis--modra">
+          Jmenuji se Vendy.
+        </h1>
+        <h5 class="hlavicka__podnadpis hlavicka__podnadpis--gray">O mně</h5>
+        <p class="hlavicka__text hlavicka__text--title">
+          Jsem začínající webový vývojář a tvůrčí osobnost. Baví mě design a
+          komunikace.
+        </p>
+        <button class="hlavicka__btn">Vytvořme spolu něco úžasného</button>
+      </div>
+      <div class="hlavicka__img">
+        <img src="img/photo-about-compressed.jpg" alt="o-mne" />
+      </div>
     </header>
     <main class="hlavni">
+      <img src="img/my-work.jpg" alt="prace" class="hlavni__text--img" />
       <p class="hlavni__text--about">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
-        consequuntur, quas laboriosam porro debitis quaerat accusamus in ratione
-        reiciendis maiores voluptas laudantium nemo, nobis eveniet quod nisi
-        eos, commodi quisquam.
+        Především jsem každý den studentem. Tvorba webu je pro mě svým způsobem
+        splněný sen. Vždycky mě to táhlo k designu a vždycky jsem věděla, že
+        jednou budu dělat to, co mě bude bavit a zároveň tím budu pomáhat lidem.
+        Webový vývoj jsem se začala učit v říjnu 2020. Svoje znalosti posouvám
+        každý den dál. Jsem hlavně samouk. IT vzdělání u mě nenajdete, ale to mi
+        jistým způsobem dává nadhled.
       </p>
-      <img
-        src="kevin-bhagat-zNRITe8NPqY-unsplash.jpg"
-        alt="prace"
-        class="hlavni__text--img"
-      />
     </main>
     <div class="kontakt">
       <span class="kontakt__email-email">jeleni@email.cz</span>

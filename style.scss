@@ -1,7 +1,9 @@
+/*colors*/
 $mainColor: #a6808c;
 $secondaryColor: #ccb7ae;
 $thirdColor: #706677;
 $blackColor: #000000;
+/*other*/
 $paddingTop: 1rem;
 $fontSmall: 18px;
 $fontNadpisy: 26px;
@@ -20,7 +22,7 @@ $padding-bottom: 2rem;
 @mixin mainGrid {
   display: grid;
   grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
-  grid-template-rows: 15vh 1fr 1fr 1fr 8vh;
+  grid-template-rows: 15vh 1fr 1fr 1fr 1fr 8vh;
 }
 
 @mixin rozvrzeniGrid {
@@ -30,6 +32,7 @@ $padding-bottom: 2rem;
 body {
   @include mainGrid();
   @include mainSetting();
+  perspective: 1000;
 }
 .nav {
   grid-column: 2 / span 3;
@@ -39,8 +42,6 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 8vh;
-
-  align-self: start;
 }
 
 .nav__logo {
@@ -51,6 +52,17 @@ body {
   align-self: center;
   font-size: $fontMedium;
   padding-top: $paddingTop;
+  margin-bottom: $marginTop + 2rem;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 2px;
+    background: $mainColor;
+  }
 }
 
 .nav__links {
@@ -62,11 +74,23 @@ body {
   padding-top: $paddingTop;
 }
 
-.links {
+// .links {
+//   font-size: $fontSmall;
+//   &__link:hover {
+//     color: $secondaryColor;
+//     // border-bottom: 1px solid $mainColor;
+//     text-decoration: $mainColor;
+//   }
+// }
+
+.links__link {
   font-size: $fontSmall;
-  transition: 0.5s;
-  &__link:hover {
+  transition: all 0.5s ease;
+  text-decoration: none;
+  color: $blackColor;
+  &:hover {
     color: $secondaryColor;
+    border-bottom: 1px solid $mainColor;
   }
 }
 
@@ -123,8 +147,16 @@ body {
 .hlavicka {
   @include rozvrzeniGrid();
   grid-row: 2;
-  display: grid;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   place-items: start, start;
+  &__text,
+  &__podnadpis,
+  &__btn {
+    margin-top: $marginTop;
+  }
+  margin-top: $marginTop + 3rem;
 }
 
 .hlavicka h1 {
@@ -136,6 +168,26 @@ body {
 .hlavicka__podnadpis {
   font-size: $fontSmall;
   align-self: start;
+}
+
+.hlavicka__btn {
+  padding: $paddingTop;
+  background-color: $mainColor;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  &:hover {
+    background-color: $thirdColor;
+    border-radius: 0px;
+  }
+}
+.hlavicka img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 50%;
 }
 
 .hlavni {
@@ -150,10 +202,6 @@ body {
   display: grid;
   width: 100%;
   max-width: 400px;
-}
-
-.hlavni__text--about {
-  padding-bottom: $padding-bottom;
 }
 
 .paticka {

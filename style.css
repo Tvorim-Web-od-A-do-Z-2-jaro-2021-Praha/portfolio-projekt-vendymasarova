@@ -1,10 +1,14 @@
+/*colors*/
+/*other*/
 body {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 5vw 1fr 1fr 1fr 5vw;
       grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
-  -ms-grid-rows: 15vh 1fr 1fr 1fr 8vh;
-      grid-template-rows: 15vh 1fr 1fr 1fr 8vh;
+  -ms-grid-rows: 15vh 1fr 1fr 1fr 1fr 8vh;
+      grid-template-rows: 15vh 1fr 1fr 1fr 1fr 8vh;
+  -webkit-perspective: 1000;
+          perspective: 1000;
 }
 
 body * {
@@ -34,8 +38,6 @@ body * {
       -ms-flex-align: center;
           align-items: center;
   height: 8vh;
-  -ms-flex-item-align: start;
-      align-self: start;
 }
 
 .nav__logo {
@@ -49,6 +51,19 @@ body * {
       align-self: center;
   font-size: 36px;
   padding-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+.nav__logo::after {
+  content: "";
+  position: absolute;
+  top: 7rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: #a6808c;
 }
 
 .nav__links {
@@ -64,14 +79,17 @@ body * {
   padding-top: 1rem;
 }
 
-.links {
+.links__link {
   font-size: 18px;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  text-decoration: none;
+  color: #000000;
 }
 
 .links__link:hover {
   color: #ccb7ae;
+  border-bottom: 1px solid #a6808c;
 }
 
 .burger {
@@ -145,9 +163,20 @@ body * {
   grid-column: 2 / span 3;
   -ms-grid-row: 2;
   grid-row: 2;
-  display: -ms-grid;
-  display: grid;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   place-items: start, start;
+  margin-top: 5rem;
+}
+
+.hlavicka__text, .hlavicka__podnadpis, .hlavicka__btn {
+  margin-top: 2rem;
 }
 
 .hlavicka h1 {
@@ -163,6 +192,29 @@ body * {
   -ms-flex-item-align: start;
       -ms-grid-row-align: start;
       align-self: start;
+}
+
+.hlavicka__btn {
+  padding: 1rem;
+  background-color: #a6808c;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.hlavicka__btn:hover {
+  background-color: #706677;
+  border-radius: 0px;
+}
+
+.hlavicka img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 50%;
 }
 
 .hlavni {
@@ -186,10 +238,6 @@ body * {
   display: grid;
   width: 100%;
   max-width: 400px;
-}
-
-.hlavni__text--about {
-  padding-bottom: 2rem;
 }
 
 .paticka {
