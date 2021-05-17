@@ -40,29 +40,19 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-content: flex-start;
   height: 8vh;
 }
 
-.nav__logo {
+.links__logo {
+  display: flex;
+  align-items: flex-end;
+  text-decoration: none;
   color: $mainColor;
   font-weight: 900;
   grid-column-start: 2;
   grid-column-end: 3;
-  align-self: center;
   font-size: $fontMedium;
-  padding-top: $paddingTop;
-  margin-bottom: $marginTop + 2rem;
-  &::after {
-    content: "";
-    position: absolute;
-    top: 7rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 2px;
-    background: $mainColor;
-  }
 }
 
 .nav__links {
@@ -84,6 +74,8 @@ body {
 // }
 
 .links__link {
+  display: flex;
+  align-items: flex-end;
   font-size: $fontSmall;
   transition: all 0.5s ease;
   text-decoration: none;
@@ -146,6 +138,9 @@ body {
 
 .hlavicka {
   @include rozvrzeniGrid();
+  background-image: url(img/photo-about-compressed.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   grid-row: 2;
   display: flex;
   justify-content: space-around;
