@@ -10,11 +10,14 @@ $fontNadpisy: 26px;
 $fontMedium: 36px;
 $marginTop: 2rem;
 $padding-bottom: 2rem;
+$font-roboto: "Roboto Slab", serif;
 
 @font-face {
   font-family: PlayFair;
   src: url("./fonts/PlayfairDisplay-VariableFont_wght.ttf");
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300&display=swap");
 
 @mixin mainSetting {
   * {
@@ -27,7 +30,7 @@ $padding-bottom: 2rem;
 @mixin mainGrid {
   display: grid;
   grid-template-columns: 5vw 25% 1fr 1fr 5vw;
-  grid-template-rows: 100vh 1fr 1fr 1fr 8vh;
+  grid-template-rows: fit-content;
 }
 
 @mixin rozvrzeniGrid {
@@ -51,50 +54,8 @@ body {
   align-self: flex-start;
   height: 8vh;
   z-index: 10;
-  // padding-bottom: 2rem;
-}
-
-.hlavicka__animateText h1 {
   position: relative;
-  font-family: PlayFair;
-  font-weight: lighter;
-  text-align: center;
-  font-size: clamp(2rem, 10vw, 5rem);
-  transform: translateY(-100%);
-  animation: transition 1s ease-in;
-  z-index: 3;
-  // display: inline-block;
-  display: none;
-  color: #ffffff;
-}
-
-.hlavicka__animateText h1.text-in {
-  animation: textIn 0.5s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@keyframes textIn {
-  from {
-    transform: translateY(-110%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(-100%);
-    opacity: 1;
-  }
-}
-
-.links__logo {
-  display: flex;
-  align-items: flex-start;
-  text-decoration: none;
-  color: $mainColor;
-  font-weight: 900;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  font-size: $fontMedium;
+  // padding-bottom: 2rem;
 }
 
 .nav__logo {
@@ -104,35 +65,28 @@ body {
   grid-column-end: 3;
   align-self: center;
   justify-content: flex-start;
-  font-size: $fontMedium;
-  // padding-top: $paddingTop;
-}
+  font-size: $fontMedium + 10px;
 
-.nav__logo span {
-  font-size: 18px;
-  color: black;
-  font-weight: lighter;
-  padding-left: 10px;
+  span {
+    font-size: 14px;
+    color: black;
+    font-weight: lighter;
+    padding-left: 10px;
+    align-self: center;
+    font-family: $font-roboto;
+  }
 }
 
 .nav__links {
+  grid-column: 4/5;
   display: flex;
   list-style: none;
-  width: 30%;
-  justify-content: space-around;
-  align-self: flex-end;
-  padding-top: $paddingTop;
-  // margin-bottom: 2rem;
-}
 
-// .links {
-//   font-size: $fontSmall;
-//   &__link:hover {
-//     color: $secondaryColor;
-//     // border-bottom: 1px solid $mainColor;
-//     text-decoration: $mainColor;
-//   }
-// }
+  justify-content: space-between;
+  align-self: center;
+  position: relative;
+  max-width: 100vw;
+}
 
 .links__link {
   display: flex;
@@ -141,6 +95,8 @@ body {
   transition: all 0.5s ease;
   text-decoration: none;
   color: $blackColor;
+  margin: 10px;
+  flex: 0 0 100px;
   // color: #ffffff;
   &:hover {
     color: $secondaryColor;
@@ -149,57 +105,14 @@ body {
   }
 }
 
-.burger {
-  cursor: pointer;
-  display: none;
-}
-
-.burger div {
-  width: 1.7rem;
-  height: 0.2rem;
-  background-color: black;
-  margin: 0.4rem;
-  transition: all 0.3s ease;
-}
-@media (max-width: 670px) {
+@media (max-width: 780px) {
   .nav__links {
-    flex-direction: column;
-    width: 50%;
-    position: absolute;
-    right: -2.3rem;
-    height: 100vh;
-    // top: 8vh;
-    background-color: $mainColor;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateX(100%);
-    transition: transform 1s ease-in;
-    z-index: 10;
+    overflow: scroll;
   }
-
-  .links__link {
-    padding-top: $paddingTop;
-    &:hover {
-      transform: translateY(-0.3rem);
-    }
-  }
-
-  .burger {
-    display: block;
-    color: #ffffff;
-    padding-top: $paddingTop;
-    z-index: 5;
-  }
-}
-
-.nav__active {
-  transform: translateX(0%);
 }
 
 .hlavicka {
+  height: 100vh;
   grid-column: 1/-1;
   background-image: linear-gradient(#0005, $mainColor),
     url(img/hlavicka-background.jpg);
@@ -214,12 +127,110 @@ body {
   justify-content: space-around;
   align-items: center;
   place-items: start, start;
-  &__text,
-  &__podnadpis,
-  &__btn {
-    margin-top: $marginTop;
-  }
   // margin-top: $marginTop;
+}
+
+.hlavicka__about {
+  position: relative;
+  #logo {
+    width: 500px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  #logo .jedna {
+    stroke-dasharray: 441.68438;
+    stroke-dashoffset: 441.68438;
+    animation: line-anm 2s ease forwards;
+  }
+  #logo .dva {
+    stroke-dasharray: 515;
+    stroke-dashoffset: 515;
+    animation: line-anm 2s ease forwards 0.3s;
+  }
+  #logo .tri {
+    stroke-dasharray: 422.5005;
+    stroke-dashoffset: 422.5005;
+    animation: line-anm 2s ease forwards 0.6s;
+  }
+  #logo .ctyri {
+    stroke-dasharray: 561.4002;
+    stroke-dashoffset: 561.4002;
+    animation: line-anm 2s ease forwards 0.9s;
+  }
+  #logo .pet {
+    stroke-dasharray: 429.42;
+    stroke-dashoffset: 429.42;
+    animation: line-anm 2s ease forwards 1.2s;
+  }
+  #logo .sest {
+    stroke-dasharray: 754.926;
+    stroke-dashoffset: 754.926;
+    animation: line-anm 2s ease forwards 1.5s;
+  }
+  #logo .sedm {
+    stroke-dasharray: 506;
+    stroke-dashoffset: 506;
+    animation: line-anm 2s ease forwards 1.8s;
+  }
+  #logo .osm {
+    stroke-dasharray: 418;
+    stroke-dashoffset: 418;
+    animation: line-anm 2s ease forwards 2.1s;
+  }
+  #logo .devet {
+    stroke-dasharray: 506;
+    stroke-dashoffset: 506;
+    animation: line-anm 2s ease forwards 2.4s;
+  }
+  #logo .deset {
+    stroke-dasharray: 246;
+    stroke-dashoffset: 246;
+    animation: line-anm 2s ease forwards 2.7s;
+  }
+  #logo .jedenact {
+    stroke-dasharray: 433;
+    stroke-dashoffset: 433;
+    animation: line-anm 2s ease forwards 3s;
+  }
+  #logo .dvanact {
+    stroke-dasharray: 355;
+    stroke-dashoffset: 355;
+    animation: line-anm 2s ease forwards 3.3s;
+  }
+  #logo .trinact {
+    stroke-dasharray: 597;
+    stroke-dashoffset: 597;
+    animation: line-anm 2s ease forwards 3.6s;
+  }
+  .arrow-down {
+    height: 25px;
+    width: 25px;
+    z-index: 10;
+    position: absolute;
+    top: 15rem;
+    // transform: translateX(-50%);
+    animation: arrow 2s ease infinite alternate;
+  }
+  @keyframes arrow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 0%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 25%);
+    }
+  }
+}
+@keyframes line-anm {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .hlavicka__nadpis {
@@ -263,7 +274,7 @@ body {
 }
 
 .webdesign {
-  margin-top: $marginTop + 3rem;
+  margin-top: $marginTop + 7rem;
 
   grid-row: 2;
   @include rozvrzeniGrid();
@@ -274,8 +285,9 @@ body {
   // align-items: center;
   // justify-items: center;
 }
-.row1__nadpis {
+.row1__podnadpis {
   position: relative;
+  font-family: $font-roboto;
 }
 
 .row1__nadpis::before {
@@ -284,9 +296,14 @@ body {
   height: 2px;
   background-color: #000000;
   position: absolute;
-  top: 110%;
+  transform: translateY(2rem);
 
   // transform: translate(100%, 100%);
+}
+
+.row1__text {
+  max-width: 270px;
+  max-height: 150px;
 }
 
 .row1__btn {
@@ -296,25 +313,51 @@ body {
   padding: 14px;
   border-radius: 6px;
   transition: all 1s ease;
+  font-family: $font-roboto;
+  font-weight: 300;
   &:hover {
-    background: $thirdColor;
-    border: none;
-    border-radius: 0;
+    background: $mainColor;
   }
 }
 
-.webdesign__row1 {
+.webdesign__row1,
+.ilustrace__row1 {
   width: 100%;
   max-width: 350px;
   height: auto;
   grid-column: 1/2;
+  row-gap: 2rem;
   display: flex;
   flex-direction: column;
-  justify-self: flex-start;
+  // justify-content: space-around;
   align-items: flex-start;
+  position: relative;
+
+  .circle1 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ccb7ae88;
+    z-index: -1;
+    position: absolute;
+    top: 150px;
+    left: -50px;
+  }
+
+  .circle2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #70667763;
+    z-index: -1;
+    position: absolute;
+    top: 400px;
+    left: 100px;
+  }
 }
 
-.webdesign__row2 {
+.webdesign__row2,
+.ilustrace__row2 {
   gap: 2rem;
   grid-column: 2 / span 2;
 
@@ -340,15 +383,67 @@ body {
   // flex-direction: column;
 }
 
-.webdesign__row2 img {
+.webdesign__row2 img,
+.ilustrace__row2 img,
+svg {
   width: 100%;
   max-width: 350px;
   height: auto;
+  object-fit: cover;
 
   // border-radius: 50%;
 }
+
+svg {
+  #right-wheel,
+  #left-wheel {
+    animation: wheel 2s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  #man-bike {
+    animation: bike 1s ease-in-out infinite alternate;
+    transform-origin: bottom;
+  }
+
+  #HEAD {
+    animation: hat 1s ease-in-out infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  @keyframes wheel {
+    from {
+      transform: rotateZ(0deg);
+    }
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+
+  @keyframes bike {
+    from {
+      transform: rotateX(0deg);
+    }
+    to {
+      transform: rotateX(20deg);
+    }
+  }
+
+  @keyframes hat {
+    from {
+      transform: translateY(0%);
+    }
+    to {
+      transform: translateY(20%);
+    }
+  }
+}
 @media (max-width: 1120px) {
   .webdesign {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ilustrace {
     grid-template-columns: 1fr 1fr;
   }
   .row2__col1,
@@ -356,14 +451,32 @@ body {
     flex-direction: column;
   }
 
-  .webdesign__row2 {
+  .webdesign__row2,
+  .ilustrace__row2 {
     grid-column: 4/5;
   }
 }
-.webdesign__text--img {
+
+.ilustrace {
+  margin-top: $marginTop + 7rem;
+
+  grid-row: 3;
+  @include rozvrzeniGrid();
   display: grid;
-  width: 100%;
-  max-width: 400px;
+  grid-template-columns: 25% 1fr 1fr;
+
+  .circle1 {
+    background-color: #a6808c73;
+    width: 250px;
+    height: 250px;
+    top: -10%;
+    left: -50%;
+  }
+
+  .circle2 {
+    top: 300px;
+    left: 00px;
+  }
 }
 
 .kontakt {
@@ -395,7 +508,7 @@ body {
 .paticka {
   height: 8vh;
   grid-column: 1/-1;
-  grid-row: -2;
+  grid-row: 5;
   display: flex;
   align-items: center;
   justify-content: center;
