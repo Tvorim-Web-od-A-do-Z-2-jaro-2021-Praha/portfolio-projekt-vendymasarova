@@ -1,13 +1,23 @@
+/*colors*/
 $mainColor: #a6808c;
 $secondaryColor: #ccb7ae;
 $thirdColor: #706677;
 $blackColor: #000000;
+/*other*/
 $paddingTop: 1rem;
 $fontSmall: 18px;
 $fontNadpisy: 26px;
 $fontMedium: 36px;
 $marginTop: 2rem;
 $padding-bottom: 2rem;
+$font-roboto: "Roboto Slab", serif;
+
+@font-face {
+  font-family: PlayFair;
+  src: url("./fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200;300&display=swap");
 
 @mixin mainSetting {
   * {
@@ -19,8 +29,8 @@ $padding-bottom: 2rem;
 
 @mixin mainGrid {
   display: grid;
-  grid-template-columns: 5vw 1fr 1fr 1fr 5vw;
-  grid-template-rows: 15vh 1fr 1fr 1fr 8vh;
+  grid-template-columns: 5vw 25% 1fr 1fr 5vw;
+  grid-template-rows: fit-content;
 }
 
 @mixin rozvrzeniGrid {
@@ -30,17 +40,22 @@ $padding-bottom: 2rem;
 body {
   @include mainGrid();
   @include mainSetting();
+  perspective: 1000;
+  margin: 0;
+  overflow-x: hidden;
 }
 .nav {
-  grid-column: 2 / span 3;
-  grid-row: 1;
+  grid-column: 2 / 5;
+  grid-row: 2;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 8vh;
 
-  align-self: start;
+  // flex-direction: column;
+  justify-content: space-between;
+  align-self: flex-start;
+  height: 8vh;
+  z-index: 10;
+  position: relative;
+  // padding-bottom: 2rem;
 }
 
 .nav__logo {
@@ -49,86 +64,175 @@ body {
   grid-column-start: 2;
   grid-column-end: 3;
   align-self: center;
-  font-size: $fontMedium;
-  padding-top: $paddingTop;
+  justify-content: flex-start;
+  font-size: $fontMedium + 10px;
+
+  span {
+    font-size: 14px;
+    color: black;
+    font-weight: lighter;
+    padding-left: 10px;
+    align-self: center;
+    font-family: $font-roboto;
+  }
 }
 
 .nav__links {
+  grid-column: 4/5;
   display: flex;
   list-style: none;
-  width: 30%;
-  justify-content: space-around;
+
+  justify-content: space-between;
   align-self: center;
-  padding-top: $paddingTop;
+  position: relative;
+  max-width: 100vw;
 }
 
-.links {
+.links__link {
+  display: flex;
+  align-items: flex-end;
   font-size: $fontSmall;
-  transition: 0.5s;
-  &__link:hover {
+  transition: all 0.5s ease;
+  text-decoration: none;
+  color: $blackColor;
+  margin: 10px;
+  flex: 0 0 100px;
+
+  &:hover {
     color: $secondaryColor;
   }
 }
 
-.burger {
-  cursor: pointer;
-  display: none;
-}
-
-.burger div {
-  width: 1.7rem;
-  height: 0.2rem;
-  background-color: black;
-  margin: 0.4rem;
-  transition: all 0.3s ease;
-}
-@media (max-width: 670px) {
+@media (max-width: 780px) {
   .nav__links {
-    flex-direction: column;
-    width: 50%;
-    position: absolute;
-    right: -2.3rem;
-    height: 92vh;
-    top: 8vh;
-    background-color: $mainColor;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transform: translateX(100%);
-    transition: transform 1s ease-in;
-    z-index: 10;
+    overflow: scroll;
   }
-
-  .links__link {
-    padding-top: $paddingTop;
-    &:hover {
-      transform: translateY(-0.3rem);
-    }
-  }
-
-  .burger {
-    display: block;
-    color: black;
-    padding-top: $paddingTop;
-    z-index: 5;
-  }
-}
-
-.nav__active {
-  transform: translateX(0%);
 }
 
 .hlavicka {
-  @include rozvrzeniGrid();
-  grid-row: 2;
-  display: grid;
+  height: 100vh;
+  grid-column: 1/-1;
+  background-image: linear-gradient(#0005, $mainColor),
+    url(img/hlavicka-background.jpg);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+
+  grid-row: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   place-items: start, start;
 }
 
-.hlavicka h1 {
-  font-size: $fontNadpisy;
+.hlavicka__about {
+  position: relative;
+  #logo {
+    width: 500px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+
+  #logo .jedna {
+    stroke-dasharray: 441.68438;
+    stroke-dashoffset: 441.68438;
+    animation: line-anm 2s ease forwards;
+  }
+  #logo .dva {
+    stroke-dasharray: 515;
+    stroke-dashoffset: 515;
+    animation: line-anm 2s ease forwards 0.3s;
+  }
+  #logo .tri {
+    stroke-dasharray: 422.5005;
+    stroke-dashoffset: 422.5005;
+    animation: line-anm 2s ease forwards 0.6s;
+  }
+  #logo .ctyri {
+    stroke-dasharray: 561.4002;
+    stroke-dashoffset: 561.4002;
+    animation: line-anm 2s ease forwards 0.9s;
+  }
+  #logo .pet {
+    stroke-dasharray: 429.42;
+    stroke-dashoffset: 429.42;
+    animation: line-anm 2s ease forwards 1.2s;
+  }
+  #logo .sest {
+    stroke-dasharray: 754.926;
+    stroke-dashoffset: 754.926;
+    animation: line-anm 2s ease forwards 1.5s;
+  }
+  #logo .sedm {
+    stroke-dasharray: 506;
+    stroke-dashoffset: 506;
+    animation: line-anm 2s ease forwards 1.8s;
+  }
+  #logo .osm {
+    stroke-dasharray: 418;
+    stroke-dashoffset: 418;
+    animation: line-anm 2s ease forwards 2.1s;
+  }
+  #logo .devet {
+    stroke-dasharray: 506;
+    stroke-dashoffset: 506;
+    animation: line-anm 2s ease forwards 2.4s;
+  }
+  #logo .deset {
+    stroke-dasharray: 246;
+    stroke-dashoffset: 246;
+    animation: line-anm 2s ease forwards 2.7s;
+  }
+  #logo .jedenact {
+    stroke-dasharray: 433;
+    stroke-dashoffset: 433;
+    animation: line-anm 2s ease forwards 3s;
+  }
+  #logo .dvanact {
+    stroke-dasharray: 355;
+    stroke-dashoffset: 355;
+    animation: line-anm 2s ease forwards 3.3s;
+  }
+  #logo .trinact {
+    stroke-dasharray: 597;
+    stroke-dashoffset: 597;
+    animation: line-anm 2s ease forwards 3.6s;
+  }
+  .arrow-down {
+    height: 25px;
+    width: 25px;
+    z-index: 10;
+    position: absolute;
+    top: 15rem;
+
+    animation: arrow 2s ease infinite alternate;
+  }
+  @keyframes arrow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 0%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 25%);
+    }
+  }
+}
+@keyframes line-anm {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hlavicka__nadpis {
+  font-size: $fontNadpisy + 18px;
+  color: #ffffff;
   align-self: center;
   margin-top: $paddingTop;
 }
@@ -138,35 +242,224 @@ body {
   align-self: start;
 }
 
-.hlavni {
+.hlavicka__btn {
+  padding: $paddingTop;
+  background-color: $mainColor;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+  transform: translateY(100%);
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: $thirdColor;
+    border-radius: 0px;
+  }
+}
+
+.hlavicka__text {
+  color: #ffffff;
+}
+.hlavicka img {
+  // max-width: 300px;
+  width: 500px;
+
+  // border-radius: 50%;
+}
+
+.webdesign {
+  margin-top: $marginTop + 7rem;
+
+  grid-row: 2;
+  @include rozvrzeniGrid();
+  display: grid;
+  grid-template-columns: 25% 1fr 1fr;
+  // grid-template-rows: 100vh 1fr 1fr 1fr 8vh;
+  // grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  // align-items: center;
+  // justify-items: center;
+}
+.row1__podnadpis {
+  position: relative;
+  font-family: $font-roboto;
+}
+
+.row1__nadpis::before {
+  content: "";
+  width: 40px;
+  height: 2px;
+  background-color: #000000;
+  position: absolute;
+  transform: translateY(2rem);
+}
+
+.row1__text {
+  max-width: 270px;
+  max-height: 150px;
+}
+
+.row1__btn {
+  border: 2px solid $mainColor;
+  outline: none;
+  background: transparent;
+  padding: 14px;
+  border-radius: 6px;
+  transition: all 1s ease;
+  font-family: $font-roboto;
+  font-weight: 300;
+  &:hover {
+    background: $mainColor;
+  }
+}
+
+.webdesign__row1,
+.ilustrace__row1 {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  grid-column: 1/2;
+  row-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  position: relative;
+
+  .circle1 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ccb7ae88;
+    z-index: -1;
+    position: absolute;
+    top: 150px;
+    left: -50px;
+  }
+
+  .circle2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #70667763;
+    z-index: -1;
+    position: absolute;
+    top: 400px;
+    left: 100px;
+  }
+}
+
+.webdesign__row2,
+.ilustrace__row2 {
+  gap: 2rem;
+  grid-column: 2 / span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.row2__col1 {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.row2__col2 {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.webdesign__row2 img,
+.ilustrace__row2 img,
+svg {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+}
+
+svg {
+  #right-wheel,
+  #left-wheel {
+    animation: wheel 2s linear infinite;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+  #man-bike {
+    animation: bike 1s ease-in-out infinite alternate;
+    transform-origin: bottom;
+  }
+
+  #HEAD {
+    animation: hat 1s ease-in-out infinite alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+  }
+
+  @keyframes wheel {
+    from {
+      transform: rotateZ(0deg);
+    }
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+
+  @keyframes bike {
+    from {
+      transform: rotateX(0deg);
+    }
+    to {
+      transform: rotateX(20deg);
+    }
+  }
+
+  @keyframes hat {
+    from {
+      transform: translateY(0%);
+    }
+    to {
+      transform: translateY(20%);
+    }
+  }
+}
+@media (max-width: 1120px) {
+  .webdesign {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ilustrace {
+    grid-template-columns: 1fr 1fr;
+  }
+  .row2__col1,
+  .row2__col2 {
+    flex-direction: column;
+  }
+
+  .webdesign__row2,
+  .ilustrace__row2 {
+    grid-column: 4/5;
+  }
+}
+
+.ilustrace {
+  margin-top: $marginTop + 7rem;
+
   grid-row: 3;
   @include rozvrzeniGrid();
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  align-items: center;
-  justify-items: center;
-}
-.hlavni__text--img {
-  display: grid;
-  width: 100%;
-  max-width: 400px;
-}
+  grid-template-columns: 25% 1fr 1fr;
 
-.hlavni__text--about {
-  padding-bottom: $padding-bottom;
-}
+  .circle1 {
+    background-color: #a6808c73;
+    width: 250px;
+    height: 250px;
+    top: -10%;
+    left: -50%;
+  }
 
-.paticka {
-  height: 8vh;
-  grid-column: 1/-1;
-  grid-row: -2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.paticka--cerna {
-  background-color: black;
-  color: white;
+  .circle2 {
+    top: 300px;
+    left: 00px;
+  }
 }
 
 .kontakt {
@@ -174,4 +467,35 @@ body {
   grid-column: 2;
   grid-row: 4;
   place-self: end center;
+}
+
+#git {
+  transform-origin: center;
+}
+
+#git:hover,
+#ig:hover,
+#email:hover {
+  animation: iconsRotate 1s ease forwards alternate;
+  transform-origin: center;
+}
+
+@keyframes iconsRotate {
+  to {
+    transform: rotateX(45deg);
+    transform-origin: center;
+  }
+}
+
+.paticka {
+  height: 8vh;
+  grid-column: 1/-1;
+  grid-row: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.paticka--cerna {
+  background-color: black;
+  color: white;
 }

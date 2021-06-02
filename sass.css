@@ -41,6 +41,7 @@ body {
 }
 
 .hlavicka {
+  background-image: url(img/my-work.jpg);
   grid-column: 2 / span 3;
   grid-row: 2;
   display: grid;
